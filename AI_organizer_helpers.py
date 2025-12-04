@@ -1,7 +1,7 @@
 import os
 import shutil
 
-SCREENSHOTS_DIRECTORY = "C:/Users/parth/OneDrive/Pictures/Screenshots"
+SCREENSHOTS_DIRECTORY = "C:/STUFF/STUFF/STUFF/STUFF/Screenshots"
 
 def get_newest_screenshot() -> str:
     files = [f for f in os.listdir(SCREENSHOTS_DIRECTORY) if f.endswith('.png')]
