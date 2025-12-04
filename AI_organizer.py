@@ -1,5 +1,3 @@
-#python3 run.py .\AI_org\AI_organizer.py 3
-
 import os
 import re
 import sys
@@ -57,10 +55,22 @@ while(inp < int(sys.argv[1])):
     Example Output Format: descriptive_filename_for_image|CategoryName
     """
 
-    response = client.models.generate_content(
-        model="gemini-2.0-flash", # Use the desired model
-        contents=[combined_prompt, screenshotfile]
-    )
+    while True:
+        try:
+            response = client.models.generate_content(
+                    model="gemini-2.0-flash", 
+                    contents=[combined_prompt, screenshotfile]
+                    )
+            break
+        except Exception as e:
+            if "RESOURCE_EXHAUSTED" in str(e):
+                print("Rate limit hit. Waiting 10 seconds...")
+                time.sleep(10)
+            else:
+                raise
+
+
+
 
     filename, category = response.text.strip().split('|')
     #strip category name
@@ -87,3 +97,6 @@ while(inp < int(sys.argv[1])):
     inp +=1
     print(f"Processed {inp}/{num_to_process}")
 print("Finished")
+
+
+
