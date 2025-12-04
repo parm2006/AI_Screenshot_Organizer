@@ -6,7 +6,7 @@ import sys
 from pathlib import Path
 from google import genai
 from dotenv import load_dotenv
-import time as timecd
+import time as time
 
 from AI_organizer_helpers import (
     SCREENSHOTS_DIRECTORY,
@@ -82,7 +82,7 @@ while(inp < int(sys.argv[1])):
     print(f"Moving {filename}:\n  TO:  {category_path}")
     rename_and_move_screenshot(newest_screenshot, dest_relative)
     
-    #time.sleep(1)
+    time.sleep(1)
     
     inp +=1
     print(f"Processed {inp}/{num_to_process}")
